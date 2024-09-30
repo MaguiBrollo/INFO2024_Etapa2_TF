@@ -13,8 +13,7 @@ class Categoria(models.Model):
       return self.nombre
 
 class Post(models.Model):
-   titulo = models.CharField(max_length=50, null=False, help_text="Texto de ayuda en el input")
-   subtitulo = models.CharField(max_length=80, null=False)
+   titulo = models.CharField(max_length=50, null=False, help_text="Título del post")
    fecha = models.DateTimeField(auto_now=True)
    texto = models.CharField(max_length=50, null=False)
    categoria = models.ForeignKey(Categoria, on_delete=models.SET_NULL, null=True, default='Sin Categoría')
