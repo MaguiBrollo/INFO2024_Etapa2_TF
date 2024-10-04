@@ -12,21 +12,34 @@ class Categoria(models.Model):
       return self.nombre
 
 # POSTEOS --------------------------------------
-class Post(models.Model):
-   titulo = models.CharField(max_length=50, null=False, help_text="Título del post")
-   post = models.TextField(max_length=250, null=False, help_text="Texto del post")
-   fecha = models.DateTimeField(auto_now=True)
+class Publicacion(models.Model):
+   titulo_publicacion = models.CharField(max_length=50, null=False, help_text="Título de la publicación.")
+   publicacion = models.TextField(max_length=250, null=False, help_text="Texto de la publicación.")
    imagen = models.ImageField(null=True, blank=True, default='static/img_default.png', upload_to='media')
-   publicado = models.DateTimeField(default=timezone.now)
-   usuario = models.ForeignKey(Usuario, on_delete=models.CASCADE, null = True)
+   fecha_publicacion = models.DateTimeField(auto_now=True)
+   fecha_modificacion = models.DateTimeField(default=timezone.now)
+   usuario = models.ForeignKey(Usuario, on_delete=models.PROTECT, null = True)
    categoria = models.ForeignKey(Categoria, on_delete=models.SET_NULL, null=True, default='Sin Categoría')
 
    class Meta:
-      ordering = ('-publicado',)
+      ordering = ('-titulo_publicacion',)
 
    def __str__(self):
-      return self.titulo
+      return self.titulo_publicacion
    
    def delete(self, using = None, keep_parents= False):
       self.imagen.delete(self.imagen.name)
       super().delete()
+
+
+# COMENTARIOS --------------------------------------
+class Comentarios(models.Model):
+   comentario = models.TextField(max_length=150, null=False)
+   editado= models.BooleanField(default=False)
+   fecha_comentario = models.DateTimeField(auto_now=True)
+   fecha_modificacion = models.DateTimeField(default=timezone.now)
+   usuario = models.ForeignKey(Usuario, on_delete=models.CASCADE, null = True)
+   publicacion = models.ForeignKey(Publicacion, on_delete=models.CASCADE, null = True)
+
+   def __str__(self):
+      return self.comentario

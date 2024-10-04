@@ -72,6 +72,9 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'proyBlog.wsgi.application'
 
+# para que ADMIN de django, tome nuestro "USUARIO"
+#                  nombre de la apps. nombre del model 
+AUTH_USER_MODEL = 'usuarios.Usuario'
 
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
