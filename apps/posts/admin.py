@@ -1,23 +1,24 @@
 from django.contrib import admin
 
-from .models import Categoria, Post
+from .models import Categoria, Publicacion
 
 
 #-------------- POSTS
-class PostAdmin(admin.ModelAdmin) :
+class PublicacionAdmin(admin.ModelAdmin) :
    list_display = ('id',
-                   'titulo', 
-                   'post',
-                   'fecha',
+                   'titulo_publicacion', 
+                   'publicacion',
                    'imagen', 
+                   'fecha_publicacion',
+                   'fecha_modificacion',
                    'publicado',
                    'usuario',
                    'categoria')
    
-   list_filter=('titulo','usuario')
-   search_fields=('titulo','post')
+   list_filter=('titulo_publicacion','usuario')
+   search_fields=('titulo_publicacion','publicacion')
    
 admin.site.register(Categoria)
-admin.site.register(Post,PostAdmin)
+admin.site.register(Publicacion,PublicacionAdmin)
 
 

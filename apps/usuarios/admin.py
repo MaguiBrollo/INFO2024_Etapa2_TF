@@ -6,12 +6,13 @@ from .models import Usuario
 
 #-------------- USUARIO
 class UsuarioAdmin(admin.ModelAdmin):
-   list_display = ('last_name', 
-                   'first_name',
-                   'direccion')
-   list_filter=('last_name', 
-                   'first_name')
-   search_fields=('last_name', 
-                   'first_name')
+   list_display = ('nombre_usuario', 
+                   'apellidos',
+                   'nombres',
+                   'correo',
+                   'fecha_ncimiento',
+                   'foto')
+   list_filter=('apellidos','nombres')
+   search_fields=('apellidos','nombres', 'nombre_usuario')
 
 admin.site.register(Usuario,UsuarioAdmin)
