@@ -6,8 +6,8 @@ from django.contrib.auth.models import AbstractUser
 
 # USUARIOS --------------------------------------
 class Usuario(AbstractUser):
-   fecha_nacimiento = models.DateField(null=False, verbose_name="Fecha Nacimiento")
-   foto = models.ImageField(null=True, blank=True, default='static/usuario.png', upload_to='media', verbose_name="Foto")
+   fecha_nacimiento = models.DateField(null=True, verbose_name="Fecha Nacimiento")
+   foto = models.ImageField(null=True, blank=True, default='static/usuario.png', upload_to='media', verbose_name="Foto de Perfil")
       
    @property
    def apellidos(self):
@@ -28,7 +28,7 @@ class Usuario(AbstractUser):
    @property
    def contrasenia(self):
       return self.password
-   
+
    def __str__(self):
       return self.first_name+", "+self.last_name
    

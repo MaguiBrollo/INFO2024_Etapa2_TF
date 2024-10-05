@@ -38,7 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
-    'apps.posts', #nombre carpeta donde está la app
+    'apps.publicacion', #nombre carpeta donde está la app
     'apps.usuarios', #nombre carpeta donde está la app
 ]
 
