@@ -1,7 +1,9 @@
+from django.contrib import messages
 from django.http import HttpResponse
-from django.shortcuts import render
-from django.urls import reverse_lazy
+from django.shortcuts import redirect, render
+from django.urls import reverse, reverse_lazy
 from django.views.generic import FormView
+from django.contrib.auth.views import LoginView, LogoutView
 
 from django.contrib.auth import views as auth_views
 
@@ -15,10 +17,25 @@ class RegistrarUsuarioView(FormView):
    success_url = reverse_lazy ("apps.usuarios:login")
 
    def form_valid(self, form):
+      messages.success(self.request, 'Registro exitoso. Inicie Sesión.')
       form.save()
-      return super().form_valid(form)
+      return redirect('apps.usuarios:registrar')
    
 
-class Login(auth_views.LoginView):
+class LoginUsaurio(LoginView):
    template_name = "login.html"
-   success_url = reverse_lazy('index')
+
+   def get_success_url(self):
+      messages.success(self.request, 'Login exitoso.')
+
+      return reverse('apps.usuario:login')
+   
+
+class LogoutUsaurio(LogoutView):
+   template_name = "logout.html"
+   #success_url = reverse_lazy('index')
+
+   def get_success_url(self):
+      messages.success(self.request, 'Logout exitoso.')
+
+      return reverse('apps.usuario:logout')
