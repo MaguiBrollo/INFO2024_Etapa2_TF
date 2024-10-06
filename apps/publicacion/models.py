@@ -1,5 +1,6 @@
 from django.db import models
 from django.utils import timezone
+from django.utils.html import format_html
 
 from apps.usuarios.models import Usuario
 
@@ -15,7 +16,10 @@ class Categoria(models.Model):
 class Publicacion(models.Model):
    titulo_publicacion = models.CharField(max_length=50, null=False, verbose_name="Título", help_text="Título de la publicación.")
    publicacion = models.TextField(max_length=250, null=False, verbose_name="Texto",help_text="Texto de la publicación.")
-   imagen = models.ImageField(null=True, blank=True, default='static/img_default.png', upload_to='media', verbose_name="Imagen")
+   imagen = models.ImageField(null=True, blank=True, 
+                              default='img_default/public_default.jpg', 
+                              upload_to='publicaciones', 
+                              verbose_name="Imagen")
    fecha_publicacion = models.DateTimeField(auto_now=True, verbose_name="Publicado")
    fecha_modificacion = models.DateTimeField(default=timezone.now , verbose_name="Modificado")
    usuario = models.ForeignKey(Usuario, on_delete=models.PROTECT, null = True, verbose_name="Usuario")
@@ -27,6 +31,9 @@ class Publicacion(models.Model):
    def __str__(self):
       return self.titulo_publicacion
    
+   def mostrar_imagen(self):
+      return format_html('<img src="{}" width="100" />', format(self.imagen.url))
+
    def delete(self, using = None, keep_parents= False):
       self.imagen.delete(self.imagen.name)
       super().delete()

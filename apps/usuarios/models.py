@@ -1,5 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
+from django.urls import reverse
+from django.utils.html import format_html
 
 # Create your models here.
 
@@ -7,8 +9,11 @@ from django.contrib.auth.models import AbstractUser
 # USUARIOS --------------------------------------
 class Usuario(AbstractUser):
    fecha_nacimiento = models.DateField(null=True, verbose_name="Fecha Nacimiento")
-   foto = models.ImageField(null=True, blank=True, default='static/usuario.png', upload_to='media', verbose_name="Foto de Perfil")
-      
+   foto = models.ImageField(null=True, blank=True,
+                     default='img_default/usu_default.png', 
+                     upload_to='usuarios', 
+                     verbose_name="Foto de Perfil")
+                                                          
    @property
    def apellidos(self):
       return self.last_name
@@ -32,14 +37,15 @@ class Usuario(AbstractUser):
    def __str__(self):
       return self.first_name+", "+self.last_name
    
-   def __str__(self):
-      return self.apellidos+", "+self.nombres
-   
    def delete(self, using = None, keep_parents= False):
       self.foto.delete(self.foto.name)
       super().delete()
 
+   def get_absolute_url(self):
+      return reverse('index')
 
+   def mostrar_foto(self):
+      return format_html('<img src="{}" width="100" />', format(self.foto.url))
 """ 
 username
 first_name

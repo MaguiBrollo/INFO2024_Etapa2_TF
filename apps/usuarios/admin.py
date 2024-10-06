@@ -11,7 +11,13 @@ class UsuarioAdmin(admin.ModelAdmin):
                    'nombres',
                    'correo',
                    'fecha_nacimiento',
-                   'foto')
+                   'foto',
+                   'mostrar_foto',
+                  'is_staff',
+                  'is_active',
+                  'is_superuser',
+                  'last_login',
+                  'date_joined' )
    
    fields = ('username', 
             'password',

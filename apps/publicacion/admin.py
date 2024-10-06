@@ -21,6 +21,7 @@ class PublicacionAdmin(admin.ModelAdmin) :
                    'titulo_publicacion', 
                    'publicacion',
                    'imagen', 
+                   'mostrar_imagen',
                    'fecha_publicacion',
                    'fecha_modificacion',
                    'usuario',
