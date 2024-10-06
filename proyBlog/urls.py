@@ -29,7 +29,8 @@ urlpatterns = [
     path('blog/', BlogView.as_view(),name="blog"),
     path('contactanos/',ContactanosView.as_view(),name="contactanos"),
 
-    path("usuarios/", include("apps.usuarios.urls")),
+    #path('', include('django.contrib.auth.urls')),
+    path('usuarios/', include('apps.usuarios.urls')),
 ]
 
 # ESTA LINEA HACE QUE PUEDAS LEER LAS URL DE LAS IMAGENES

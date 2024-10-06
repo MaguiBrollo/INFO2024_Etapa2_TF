@@ -10,9 +10,9 @@ from .forms import RegitrarUsuarioForm
 # Create your views here.
 
 class RegistrarUsuarioView(FormView):
-   template_name = "templates/registrar.html"
+   template_name = "registrar.html"
    form_class = RegitrarUsuarioForm
-   success_url = reverse_lazy ("appps.usuarios:login")
+   success_url = reverse_lazy ("apps.usuarios:login")
 
    def form_valid(self, form):
       form.save()
@@ -20,4 +20,5 @@ class RegistrarUsuarioView(FormView):
    
 
 class Login(auth_views.LoginView):
-   template_name = "templates/login.html"
+   template_name = "login.html"
+   success_url = reverse_lazy('index')
