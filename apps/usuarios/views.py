@@ -1,34 +1,29 @@
 from django.contrib import messages
-from django.http import HttpResponse
-from django.shortcuts import redirect, render
-from django.urls import reverse, reverse_lazy
-from django.views.generic import FormView
+from django.shortcuts import redirect
+from django.urls import reverse
 from django.contrib.auth.views import LoginView, LogoutView
-
-from django.contrib.auth import views as auth_views
+from django.views.generic import CreateView
 
 from .forms import RegitrarUsuarioForm
-
+from .models import Usuario
 # Create your views here.
 
-class RegistrarUsuarioView(FormView):
+class RegistrarUsuarioView(CreateView):
    template_name = "registrar.html"
    form_class = RegitrarUsuarioForm
-   success_url = reverse_lazy ("apps.usuarios:login")
-
+   model = Usuario
+   
    def form_valid(self, form):
       messages.success(self.request, 'Registro exitoso. Inicie Sesión.')
       form.save()
-      return redirect('apps.usuarios:registrar')
-   
+      return redirect('usuarios:registrar') 
 
 class LoginUsaurio(LoginView):
    template_name = "login.html"
 
    def get_success_url(self):
       messages.success(self.request, 'Login exitoso.')
-
-      return reverse('apps.usuario:login')
+      return reverse('index')
    
 
 class LogoutUsaurio(LogoutView):
@@ -37,5 +32,4 @@ class LogoutUsaurio(LogoutView):
 
    def get_success_url(self):
       messages.success(self.request, 'Logout exitoso.')
-
       return reverse('apps.usuario:logout')

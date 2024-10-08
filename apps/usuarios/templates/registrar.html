@@ -8,34 +8,84 @@
 <!-- ==================================== -->
 {% block contenido %}
 
-<form method="POST" enctype="multipart/form-data" style="margin-top: 300px; margin-bottom: 100px;">
-   <h1 class="h1"> Registro de usuario</h1>
-   <br>
-   <div class="messages">
-      {% for message in messages %}
-         <table {% if message.tags %} class="{{message.tags}}" {% endif %}>
-            {{mesagge}}
-         </table>
-      {% endfor %}
-   </div>
-   <br>
-   <div class="container-fluid"> 
-      <table>
-         {{ form }}
-      </table>
-   </div>
+<div>
+	<div class="Blog-bg">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+					<div class="Blogheading">
+						<h3>Registrar Usuario</h3>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 
-      <button type="submit" class="btn btn-success btn-lg px-3">Registrar</button>
-</form>
+	<!-- section -->
+	<div class="section light_silver">
+		<div class="container">
+			<div class="row">
+				<div
+					class="col-xs-12 col-sm-6 col-md-8 offset-md-2"
+					style="margin-bottom: 100px"
+				>
+					<!-- FORMULARIO  -->
 
+					<form
+						method="POST"
+						enctype="multipart/form-data"
+						style="margin-top: 100px; margin-bottom: 50px"
+					>
+						{% csrf_token %}
 
+						<div class="form-group">
+							<label>Nombre de Usuario</label>
+							{{ form.username }}
+						</div>
 
+						<div class="form-group">
+							<label>Contraseña</label>
+							{{ form.password1 }}
+						</div>
+						<div class="form-group">
+							<label>Repetir Contraseña</label>
+							{{ form.password2}}
+						</div>
 
+						
+						<div class="form-group">
+							<label>Nombres</label>
+							{{ form.first_name }}
+						</div>
 
+						<div class="form-group">
+							<label>Apellidos</label>
+							{{ form.last_name }}
+						</div>
 
+						<div class="form-group">
+							<label>Foto de Perfil</label>
+							{{ form.foto }}
+						</div>
 
+						<div class="form-group">
+							<label>Correo Electrónico</label>
+							{{ form.email }}
+						</div>
+						<div class="form-group">
+							<label>Fecha Nacimientoº</label>
+							{{ form.fecha_nacimiento}}
+						</div>
 
+						<button type="submit" class="btn btn-default">Registrar</button>
+					</form>
 
-
-
+					<div class="button_section" style="margin-bottom: 100px">
+						<a href="{% url 'usuarios:login' %}">Ya soy miembro</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
 {% endblock contenido %}

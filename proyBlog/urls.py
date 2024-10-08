@@ -29,9 +29,10 @@ urlpatterns = [
     path('blog/', BlogView.as_view(),name="blog"),
     path('contactanos/',ContactanosView.as_view(),name="contactanos"),
 
-    #path('', include('django.contrib.auth.urls')),
     path('usuarios/', include('apps.usuarios.urls')),
 ]
 
 # ESTA LINEA HACE QUE PUEDAS LEER LAS URL DE LAS IMAGENES
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+urlpatterns += static(settings.STATIC_URL, document_root=settings.STATICFILES_DIRS[0])
+
