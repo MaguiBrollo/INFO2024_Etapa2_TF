@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+<!-- ==================================== -->
+{% load static %}
+
+<!-- ==================================== -->
+{% block title %} LOGOUT {% endblock title %}
+
+<!-- ==================================== -->
+{% block contenido %}
+
+<div class="light_silver" style="height: 80vh;">
+	<div class="Blog-bg">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+					<div class="Blogheading">
+						<h3>Cerrar sesión</h3>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- section -->
+	<div class="section light_silver">
+		<div class="container">
+			<div class="row">
+				<div
+					class="col-xs-12 col-sm-6 col-md-8 offset-md-2 log-in-out"
+					style="margin-bottom: 100px"
+				>
+
+					<h3>Usted ha cerrado sesión ¿Desea INICIAR SESIÓN?</h3>
+					
+					<div class="button_section" style="margin-bottom: 100px">
+						<a href="{% url 'usuarios:login' %}">INICIAR SESIÓN</a>
+						
+					</div>
+	
+					
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+{% endblock contenido %}

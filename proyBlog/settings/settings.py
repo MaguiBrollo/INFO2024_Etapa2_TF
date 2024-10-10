@@ -39,10 +39,18 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'apps.publicacion', #nombre carpeta donde está la app
-    'apps.usuarios', #nombre carpeta donde está la app
+    'apps.usuarios', 
 ]
 
-# para que ADMIN de django, tome nuestro "USUARIO"
+""" 
+después de loguearse/desloguearse que lo mande a index
+LOGIN_REDIRECT_URL = "/"
+LOGOUT_REDIRECT_URL = "/"   """
+
+#     1ro. app_name='usuarios' luego el path 'login' PARA LOS login_required
+LOGIN_URL = '/usuarios/login'
+
+# para que ADMIN de django, tome nuestra tabala "USUARIO"
 #                  nombre de la apps. nombre del model 
 AUTH_USER_MODEL = 'usuarios.Usuario'
 

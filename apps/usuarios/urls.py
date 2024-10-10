@@ -1,12 +1,12 @@
 from django.urls import path
 
-from django.contrib.auth import views as auth_views
-
-from .views import RegistrarUsuarioView, LoginUsaurio
+from .views import RegistrarUsuarioView, LoginUsuario,LogoutUsuario, PreLogoutUsuario
 
 app_name='usuarios'
 
 urlpatterns  = [
    path('registrar/',RegistrarUsuarioView.as_view(), name="registrar"),
-   path('login/',LoginUsaurio.as_view(), name="login")
+   path('login/',LoginUsuario.as_view(), name="login"),
+   path('prelogout/',PreLogoutUsuario.as_view(), name="prelogout"),
+   path('logout/',LogoutUsuario.as_view(), name="logout"),
 ]

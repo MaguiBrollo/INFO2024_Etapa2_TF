@@ -1,0 +1,77 @@
+{% extends 'base.html' %}
+<!-- ==================================== -->
+{% load static %}
+
+<!-- ==================================== -->
+{% block title %} LOGOUT {% endblock title %}
+
+<!-- ==================================== -->
+{% block contenido %}
+
+<div class="light_silver" style="height: 80vh;">
+	<div class="Blog-bg">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+					<div class="Blogheading">
+						<h3>Cerrar sesión</h3>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- section -->
+	<div class="section light_silver" >
+		<div class="container">
+			<div class="row">
+				<div class="col-xs-12 col-sm-6 col-md-8 offset-md-2"
+					style="margin-bottom: 100px">
+			
+               {% if user.is_authenticated %}
+                  
+					<div class="log-in-out">
+						<h3 style="color: black">Hola {{ user.username.upper }}!</h3>
+						<img
+								src="{{user.foto.url}}"
+								alt=""
+								style="
+									width: 100px;
+									height: 100px;
+									border: 2px solid black;
+									border-radius: 50%;
+								"
+						/>
+						
+						<h2>¿Está seguro/a que desea CERRAR SESIÓN??</h2>
+
+                  <form action="{% url 'usuarios:logout' %}" method="post">
+                  	{% csrf_token %}
+
+                  	<button type="submit" class="btn btn-custom hover-btn">
+							CERRAR SESIÓN
+							</button>
+                 
+              		</form>
+					</div>
+               {% else %}
+                  <h3>Usted ha cerrado sesión ¿Desea INICIAR SESIÓN?</h3>
+                  <div class="button_section" style="margin-bottom: 100px">
+						   <a href="{% url 'usuarios:login' %}">INICIAR SESIÓN</a>
+					   </div>
+               {% endif %}
+
+			
+					<div class="messages">
+						{%for message in messages %}
+						<table{% if mesagge.tags %} class="{{mesagge.tags}}"{% endif %}>
+							{{ mesagge }}
+						</table>
+						{% endfor %}
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+{% endblock contenido %}

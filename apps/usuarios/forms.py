@@ -1,6 +1,6 @@
 from django import forms
-from django.contrib.auth.forms import UserCreationForm
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate
+from django.contrib.auth.forms import AuthenticationForm,UserCreationForm
 
 
 from .models import Usuario
@@ -39,20 +39,17 @@ class RegitrarUsuarioForm(UserCreationForm):
 
       self.fields['username'].widget.attrs['class'] = 'form-control'
       self.fields['username'].widget.attrs['placeholder'] = 'Nombre de Usuario'
+
       self.fields['password1'].widget.attrs['class'] = 'form-control'
       self.fields['password1'].widget.attrs['placeholder'] = 'Ingrese contraseña'
+
       self.fields['password2'].widget.attrs['class'] = 'form-control'
       self.fields['password2'].widget.attrs['placeholder'] = 'Vuelva a ingresar contraseña'
 
 
-
-class LoginForm(forms.Form):
-   username = forms.CharField(label= "Nombre de usuario:")
-   password = forms.CharField(label = "Contraseña: ", widget=forms.PasswordInput)
-
-   def login(self, request):
-      username = self.cleaned_data.get('username')
-      password = self.cleaned_data.get('password')
-      user = authenticate(request, username=username, password = password)
-      if user:
-         login(request, user)
+class LoginForm(AuthenticationForm):
+    def __init__(self, *args, **kwargs):
+      self.request = kwargs.pop('request', None)
+      super(LoginForm,self).__init__(*args,**kwargs)
+      self.fields["username"].widget.attrs.update({'class' : 'form-control','placeholder' : "Nombre de usuario", 'type' : 'text'})
+      self.fields["password"].widget.attrs.update({'class' : 'form-control','placeholder' : "Contraseña", 'type' : 'text'})

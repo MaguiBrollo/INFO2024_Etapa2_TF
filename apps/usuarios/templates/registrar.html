@@ -29,12 +29,45 @@
 					class="col-xs-12 col-sm-6 col-md-8 offset-md-2"
 					style="margin-bottom: 100px"
 				>
-					<!-- FORMULARIO  -->
+					<div class="text_center">
+						<small>
+							{% if form.errors %}
+							<h1>Errores</h1>
+							<!---->
+							{% for field in form %}
 
+							<!---->
+							{% if field.errors %}
+							<p class="texto-rojo" style="font-weight: bold">
+								{{ field.label_tag }}
+							</p>
+							<!---->
+							{% for error in field.errors %}
+							<p class="texto-rojo">{{ error|escape }}</p>
+							{% endfor %}
+							<!---->
+							{% endif %}
+							<!---->
+							{% endfor %}
+							<!---->
+							{% if form.non_field_errors %}
+							<!---->
+							{% for error in form.non_field_errors %}
+							<p class="texto-rojo">{{ error|escape }}</p>
+							{% endfor %}
+							<!---->
+							{% endif %}
+							<!---->
+							{% endif %}
+							<hr />
+						</small>
+					</div>
+					<!-- FORMULARIO  -->
+					<h3>Completar los siguiente campos:</h3>
 					<form
 						method="POST"
 						enctype="multipart/form-data"
-						style="margin-top: 100px; margin-bottom: 50px"
+						style="margin-top: 20px; margin-bottom: 50px"
 					>
 						{% csrf_token %}
 
@@ -42,7 +75,6 @@
 							<label>Nombre de Usuario</label>
 							{{ form.username }}
 						</div>
-
 						<div class="form-group">
 							<label>Contraseña</label>
 							{{ form.password1 }}
@@ -52,7 +84,6 @@
 							{{ form.password2}}
 						</div>
 
-						
 						<div class="form-group">
 							<label>Nombres</label>
 							{{ form.first_name }}
@@ -77,7 +108,9 @@
 							{{ form.fecha_nacimiento}}
 						</div>
 
-						<button type="submit" class="btn btn-default">Registrar</button>
+						<button type="submit" class="btn btn-custom hover-btn">
+							REGISTRAR
+						</button>
 					</form>
 
 					<div class="button_section" style="margin-bottom: 100px">

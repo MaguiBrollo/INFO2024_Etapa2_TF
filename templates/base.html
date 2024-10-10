@@ -4,6 +4,8 @@
 	<head>
 		<!-- basic -->
 		<meta charset="utf-8" />
+		<!-- De esta forma indicas a los rastreadores que no muestren la versión almacenada en la caché en los resultados de búsqueda, sino la actual.-->
+		<meta name="robots" content="noarchive" />
 		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 		<!-- mobile metas -->
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -67,7 +69,7 @@
 					</div>
 					<div class="col-lg-9">
 						<div class="menu-area">
-							<div class="limit-box">
+							<div class="limit-box menu-area-texto">
 								<nav class="main-menu">
 									<ul class="menu-area-main">
 										<li class="active">
@@ -83,12 +85,40 @@
 										<li>
 											<a href="{% url 'contactanos' %}">Contáctanos</a>
 										</li>
+
+										{% if user.is_authenticated %}
 										<li>
-											<a href="{% url 'usuarios:login' %}">Login</a>
+											<a href="#">Usuarios</a>
+											<ul>
+												<li class="margin-tb">
+													<a href="#">Mi Perfil</a>
+												</li>
+												<li>
+													<a href="{% url 'usuarios:prelogout' %}"
+														>Cerrar Sesión</a
+													>
+												</li>
+											</ul>
 										</li>
+
+										{% else %}
+
 										<li>
-											<a href="{% url 'usuarios:registrar' %}">Registrar</a>
+											<a href="#">Usuarios</a>
+											<ul>
+												<li>
+													<a href="{% url 'usuarios:login' %}"
+														>Iniciar Sesión</a
+													>
+												</li>
+												<li>
+													<a href="{% url 'usuarios:registrar' %}">Registrar</a>
+												</li>
+											</ul>
 										</li>
+
+										{% endif %}
+
 										<li>
 											<a href="#"
 												><img
@@ -98,6 +128,28 @@
 										</li>
 									</ul>
 								</nav>
+								{% if user.is_authenticated %}
+								<div
+									style="
+										width: 150px;
+										display: flex;
+										align-items: center;
+										justify-content: space-between;
+									"
+								>
+									<p style="color: white">Hola {{ user.username.upper }}!</p>
+									<img
+										src="{{ user.foto.url }}"
+										alt=""
+										style="
+											width: 40px;
+											height: 40px;
+											border: 2px solid white;
+											border-radius: 50%;
+										"
+									/>
+								</div>
+								{% endif %}
 							</div>
 						</div>
 					</div>
