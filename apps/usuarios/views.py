@@ -17,8 +17,9 @@ class RegistrarUsuarioView(CreateView):
 
    def form_valid(self, form):
       messages.success(self.request, 'Registro exitoso. Ahora puede Iniciar Sesión.')
-      form.save()
-      return super().form_valid(form)
+      usuario=form.save()
+      login(self.request, usuario) 
+      return redirect('usuarios:login')
 
 
 # USUARIOS----------------------------
@@ -43,16 +44,3 @@ class LogoutUsuario(LogoutView):
       messages.success(self.request, 'Logout exitoso.')
       return reverse('usuarios:logout')
    
-""" 
-def form_valid(self, form):
-      messages.success(self.request, 'Registro exitoso. Ahora puede Iniciar Sesión.')
-      usu = form.cleaned_data.get('username')
-      pas = form.cleaned_data.get('password1')
-      usuario = authenticate(username=usu, password=pas)
-      if usuario is not None:
-         form.save()
-         login(self.request, usuario) 
-         return reverse('index')
-      else:
-         return reverse('usuarios:login')
-      #return super().form_valid(form) """

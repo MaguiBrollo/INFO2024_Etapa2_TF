@@ -1454,6 +1454,10 @@
 		padding: 23px 10px 23px 10px;
 		font-size: 20px;
 	}
+
+	.logo_section::after {
+		display: flex;
+	}
 }
 
 @media (min-width: 1200px) and (max-width: 1620px) {
@@ -1464,7 +1468,7 @@
 	}
 
 	.limit-box {
-		margin: 27px 0 0;
+		margin: 0px;
 	}
 
 	.banner-slider {
@@ -1499,6 +1503,10 @@
 		top: 35%;
 	}
 
+	.logo_section::after {
+		display: flex;
+	}
+
 }
 
 /**-- medium desk --**/
@@ -1519,6 +1527,10 @@
 
 	.sign_up_cont h3 {
 		font-size: 17px;
+	}
+
+	.logo_section::after {
+		display: flex;
 	}
 }
 
@@ -1797,11 +1809,11 @@
 	}
 
 	.logo_section::after {
-		display: none;
+		display: flex;
 	}
 
 	.menu-area {
-		margin: 30px 0 0;
+		margin: 20px 0 0;
 	}
 
 	.footer_links ol li {
@@ -3062,4 +3074,15 @@
 		color: #212222;
 	}
 
+}
+
+
+@media (max-width: 767px) {
+	.menu-area-texto {
+		padding: 10px;
+	}
+
+	.cont-foto-perfil {
+		width: 150px;
+	}
 }
