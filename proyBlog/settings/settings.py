@@ -38,8 +38,21 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
-    'apps.posts', #nombre carpeta donde está la app
+    'apps.publicacion', #nombre carpeta donde está la app
+    'apps.usuarios', 
 ]
+
+""" 
+después de loguearse/desloguearse que lo mande a index
+LOGIN_REDIRECT_URL = "/"
+LOGOUT_REDIRECT_URL = "/"   """
+
+#     1ro. app_name='usuarios' luego el path 'login' PARA LOS login_required
+LOGIN_URL = '/usuarios/login'
+
+# para que ADMIN de django, tome nuestra tabala "USUARIO"
+#                  nombre de la apps. nombre del model 
+AUTH_USER_MODEL = 'usuarios.Usuario'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -105,7 +118,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/5.1/topics/i18n/
 
-LENGUAJE_CODE = 'es_ar' 
+LANGUAGE_CODE = 'es-ar'
 
 TIME_ZONE = 'America/Argentina/Buenos_Aires'
 
