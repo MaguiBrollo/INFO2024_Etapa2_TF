@@ -61,7 +61,9 @@
 							<div class="center-desk">
 								<div class="logo">
 									<a href="{% url 'index' %}"
-										><img src="{% static 'images/logo.png' %}" alt="#"
+										><img
+											src="{% static 'images/logo.png' %}"
+											alt="Foto de Perfil"
 									/></a>
 								</div>
 							</div>
@@ -76,19 +78,21 @@
 											<a href="{% url 'index' %}">Inicio</a>
 										</li>
 										<li>
+											<a href="{% url 'blog' %}">Blog</a>
+										</li>
+										<li>
 											<a href="{% url 'nosotros' %}">Nosotros</a>
 										</li>
 										<li>
-											<a href="{% url 'blog' %}">Blog</a>
-										</li>
-
-										<li>
 											<a href="{% url 'contactanos' %}">Contáctanos</a>
+										</li>
+										<li>
+											<a href="#">Buscar</a>
 										</li>
 
 										{% if user.is_authenticated %}
 										<li>
-											<a href="#">Usuarios</a>
+											<a href="#">{{ user.username.upper }}</a>
 											<ul>
 												<li class="margin-tb">
 													<a href="#">Mi Perfil</a>
@@ -116,29 +120,12 @@
 												</li>
 											</ul>
 										</li>
-
 										{% endif %}
-
-										<li>
-											<a href="#"
-												><img
-													src="{% static 'images/search_icon.png' %}"
-													alt="#"
-											/></a>
-										</li>
 									</ul>
 								</nav>
 								{% if user.is_authenticated %}
-								<div
-								class="cont-foto-perfil"
-								>
-									<p style="color: white">{{ user.username.upper }}</p>
-									<img
-										src="{{ user.foto.url }}"
-										alt=""
-										class="foto-perfil"
-										
-									/>
+								<div class="cont-foto-perfil">
+									<img src="{{ user.foto.url }}" alt="" class="foto-perfil" />
 								</div>
 								{% endif %}
 							</div>

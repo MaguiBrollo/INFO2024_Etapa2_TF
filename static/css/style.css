@@ -2135,6 +2135,8 @@ ul.social_icon li a {
 	height: 250px !important;
 }
 
+
+/* ----------------------------------------------------- */
 .log-in-out {
 	display: flex;
 	flex-direction: column;
@@ -2148,7 +2150,7 @@ ul.social_icon li a {
 }
 
 .cont-foto-perfil {
-	width: 140px;
+	width: 50px;
 	display: flex;
 	align-items: center;
 	justify-content: space-around;
@@ -2158,5 +2160,12 @@ ul.social_icon li a {
 	width: 40px;
 	height: 40px;
 	border: 2px solid white;
+	border-radius: 50%;
+}
+
+.foto-perfil-2 {
+	width: 100px;
+	height: 100px;
+	border: 2px solid black;
 	border-radius: 50%;
 }
