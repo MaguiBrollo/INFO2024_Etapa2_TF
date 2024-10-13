@@ -1452,7 +1452,7 @@
 @media (min-width: 1621px) and (max-width: 3000px) {
 	.main-menu ul>li a {
 		padding: 23px 10px 23px 10px;
-		font-size: 20px;
+		font-size: 15px;
 	}
 
 	.logo_section::after {
@@ -1556,7 +1556,7 @@
 	.main-menu ul>li a {
 		padding: 20px 14px 19px 14px;
 		line-height: 20px;
-		font-size: 14px;
+		font-size: 15px;
 		display: block;
 		text-transform: none;
 		font-weight: 300;
@@ -1812,9 +1812,9 @@
 		display: flex;
 	}
 
-	.menu-area {
+	/* .menu-area {
 		margin: 20px 0 0;
-	}
+	} */
 
 	.footer_links ol li {
 		float: left;

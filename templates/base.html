@@ -94,8 +94,8 @@
 										<li>
 											<a href="#">{{ user.username.upper }}</a>
 											<ul>
-												<li class="margin-tb">
-													<a href="#">Mi Perfil</a>
+												<li>
+													<a href="{% url 'usuarios:editar' %}">Mi Perfil</a>
 												</li>
 												<li>
 													<a href="{% url 'usuarios:prelogout' %}"
@@ -156,23 +156,23 @@
 									><img
 										src="{% static 'images/location_icon.png' %}"
 										alt="#" /></span
-								><span class="text_cont">London 145<br />United Kingdom</span>
+								><span class="text_cont"
+									>Informatorio 2024<br />Prov. Chaco</span
+								>
 							</li>
 							<li>
 								<span
 									><img
 										src="{% static 'images/phone_icon.png' %}"
 										alt="#" /></span
-								><span class="text_cont">987 654 3210<br />987 654 3210</span>
+								><span class="text_cont">987 654 3210</span>
 							</li>
 							<li>
 								<span
 									><img
 										src="{% static 'images/mail_icon.png' %}"
 										alt="#" /></span
-								><span class="text_cont"
-									>demo@gmail.com<br />support@gmail.com</span
-								>
+								><span class="text_cont">demo@gmail.com</span>
 							</li>
 						</ul>
 						<ul class="social_icon">
@@ -192,7 +192,7 @@
 					</div>
 					<div class="col-lg-2 col-md-6">
 						<div class="footer_links">
-							<h3>Quick link</h3>
+							<h3>Menú</h3>
 							<ul>
 								<li>
 									<a href="{% url 'index' %}"
@@ -201,20 +201,20 @@
 									>
 								</li>
 								<li>
-									<a href="#"
-										><i class="fa fa-angle-right" aria-hidden="true"></i>
-										Nosotros</a
-									>
-								</li>
-								<li>
-									<a href="#"
+									<a href="{% url 'blog' %}"
 										><i class="fa fa-angle-right" aria-hidden="true"></i>
 										Blog</a
 									>
 								</li>
+								<li>
+									<a href="{% url 'nosotros' %}"
+										><i class="fa fa-angle-right" aria-hidden="true"></i>
+										Nosotros</a
+									>
+								</li>
 
 								<li>
-									<a href="#"
+									<a href="{% url 'contactanos' %}"
 										><i class="fa fa-angle-right" aria-hidden="true"></i>
 										Contáctanos</a
 									>

@@ -33,7 +33,9 @@ urlpatterns = [
 
     path('usuarios/', include('apps.usuarios.urls')),
 ]
-
 # LEER LAS URL DE LAS IMAGENES
-urlpatterns += static(settings.STATIC_URL, document_root=settings.STATICFILES_DIRS[0])
+urlpatterns += static(settings.STATIC_URL, document_root=settings.STATICFILES_DIRS)
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+#no tengo STATIC en las apps
+#urlpatterns += staticfiles_urlpatterns()
