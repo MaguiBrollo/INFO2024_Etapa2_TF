@@ -2,7 +2,7 @@ from django.db import models
 from django.contrib.auth.models import AbstractUser
 from django.urls import reverse
 from django.utils.html import format_html
-from django.core.files.storage import default_storage
+#from django.core.files.storage import default_storage
 
 # Create your models here.
 
@@ -41,28 +41,14 @@ class Usuario(AbstractUser):
    def __str__(self):
       return self.last_name +", "+ self.first_name
     
-   """ def delete(self, using = None, keep_parents= False):
+   def delete(self, using = None, keep_parents= False): #borrado en admin
       self.foto.delete(self.foto.name)
-      super().delete() """
-
-   def save(self, *args, **kwargs):
-      #img diferente de a la que ya tiene
-      if self.id and self.foto.name != '../static/img_default/usu_default.png':
-         viejo = Usuario.objects.get(id = self.id)
-         img_default = '../static/img_default/usu_default.png'
-
-         if viejo.foto.url != self.foto.url and viejo.foto.name != img_default:
-            #eliminar img anterior, si es dist de la actual y dist de default
-            default_storage.delete(viejo.foto.path)
-
-      super(Usuario, self).save(*args, **kwargs) 
-
+      super().delete()
 
    def get_absolute_url(self):
       return reverse('index')
 
-   #para el admin dj
-   def mostrar_foto(self):
+   def mostrar_foto(self):   #para el admin dj
       return format_html('<img src="{}" width="100" />', format(self.foto.url))
 
 """ 
