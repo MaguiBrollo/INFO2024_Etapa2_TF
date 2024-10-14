@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib.auth.models import AbstractUser
 from django.urls import reverse
 from django.utils.html import format_html
+#from django.core.files.storage import default_storage
 
 # Create your models here.
 
@@ -39,16 +40,17 @@ class Usuario(AbstractUser):
 
    def __str__(self):
       return self.last_name +", "+ self.first_name
-   
-   def delete(self, using = None, keep_parents= False):
+    
+   def delete(self, using = None, keep_parents= False): #borrado en admin
       self.foto.delete(self.foto.name)
       super().delete()
 
    def get_absolute_url(self):
       return reverse('index')
 
-   def mostrar_foto(self):
+   def mostrar_foto(self):   #para el admin dj
       return format_html('<img src="{}" width="100" />', format(self.foto.url))
+
 """ 
 username
 first_name

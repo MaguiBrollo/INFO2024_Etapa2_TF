@@ -7,7 +7,7 @@
 
 <!-- ==================================== -->
 {% block contenido %}
-<main >
+<main>
 	<!-- revolution slider -->
 	<div class="banner-slider">
 		<div class="container-fluid">
@@ -20,7 +20,10 @@
 								<img src="{% static 'images/slider_1.png' %}" alt="#" />
 							</div>
 							<div class="carousel-item">
-								<img src="{% static 'images/slider_1.png' %}" alt="#" />
+								<img src="{% static 'images/slider_2.png' %}" alt="#" />
+							</div>
+							<div class="carousel-item">
+								<img src="{% static 'images/slider_3.png' %}" alt="#" />
 							</div>
 						</div>
 						<!-- Left and right controls -->
@@ -42,14 +45,18 @@
 				</div>
 				<div class="col-md-5">
 					<div class="full slider_cont_section">
-						<h4>Noticias actualizadas</h4>
-						<h3>Jack Blogger</h3>
+						<h3>Six Blog</h3>
+						<h4>Noticias actualizadas de IOT</h4>
+
 						<p>
-							It is a long established fact that a reader will be distracted by
-							the readable content of a page when looking at its layout. The
-							point of using Lorem Ipsum is that it has a more-or-less normal
-							distribution of letters, as opposed to using 'Content here,
-							content here', making it look
+							El término IoT, o Internet de las cosas, se refiere a la red
+							colectiva de dispositivos conectados, y a la tecnología que
+							facilita la comunicación entre los dispositivos y la nube, así
+							como entre los propios dispositivos. <br />
+							Dispositivos de uso diario, como los cepillos de dientes, las
+							aspiradoras, los coches y las máquinas, pueden utilizar sensores
+							para recopilar datos y responder de forma inteligente a los
+							usuarios.
 						</p>
 						<div class="button_section">
 							<a href="{% url 'nosotros' %}">Nosotros</a>
@@ -68,7 +75,7 @@
 			<div class="row">
 				<div class="col-md-12">
 					<div class="heading">
-						<h3>Nosotros <span class="orange_color">Us</span></h3>
+						<h3>Nosotros <span class="orange_color">Nosotros</span></h3>
 					</div>
 				</div>
 			</div>
@@ -78,34 +85,18 @@
 				</div>
 				<div class="col-md-6">
 					<div class="full blog_cont">
-						<h4>The biggest and most awesome camera of year</h4>
-						<h5>MAY 14 2019 5 READ</h5>
+						<h4>Six Blog</h4>
+						<h5>Informatorio 2024</h5>
 						<p>
-							There are many variations of passages of Lorem Ipsum available,
-							but the majority have suffered alteration in some form, by
-							injected humour, or randomised words which don't look even
-							slightly believable.
+							Somos un grupo de estudiantes, más específicamente el GRUPO 6 de
+							la Comisón 6 del Informatorio. <br />
+							Desarrollamos este Blog, como proyecto final de la 2da etapa de
+							capacitación del Informatorio.
 						</p>
 					</div>
 				</div>
 			</div>
-			<div class="row margin_top_30">
-				<div class="col-md-6">
-					<img src="{% static 'images/blog2.png' %}" alt="#" />
-				</div>
-				<div class="col-md-6">
-					<div class="full blog_cont">
-						<h4>What 3 years of android taught me the hard way</h4>
-						<h5>MAY 19 2019 5 READ</h5>
-						<p>
-							There are many variations of passages of Lorem Ipsum available,
-							but the majority have suffered alteration in some form, by
-							injected humour, or randomised words which don't look even
-							slightly believable.
-						</p>
-					</div>
-				</div>
-			</div>
+
 			<div class="row margin_top_30">
 				<div class="col-md-12">
 					<div class="button_section full center margin_top_30">
@@ -114,8 +105,7 @@
 				</div>
 			</div>
 		</div>
-	</div> 
+	</div>
 	<!-- end section -->
-
 </main>
 {% endblock contenido %}
