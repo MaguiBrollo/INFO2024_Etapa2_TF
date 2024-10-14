@@ -2,9 +2,6 @@ from django.db import models
 from django.contrib.auth.models import AbstractUser
 from django.urls import reverse
 from django.utils.html import format_html
-#from django.core.files.storage import default_storage
-
-# Create your models here.
 
 
 # USUARIOS --------------------------------------
