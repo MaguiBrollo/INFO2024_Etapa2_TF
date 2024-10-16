@@ -26,17 +26,6 @@ class RegistrarUsuarioView(CreateView):
       login(self.request, usuario) 
       return redirect('usuarios:login')
 
-#----------------------------------------
-""" class EditarUsuario(UpdateView):
-   model = Usuario
-   template_name = "editar.html"
-   form_class = EditarUsuarioForm
-   success_url = reverse_lazy("usuarios:editar")
-
-   def get_object(self) :
-      usu, created = Usuario.objects.get_or_create(id = self.request.id)
-      return usu  """
-
 @login_required
 def EditarUsuarioView(request):
    usuBuscado = request.user.id

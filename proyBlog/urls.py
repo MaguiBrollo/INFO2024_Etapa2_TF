@@ -21,7 +21,8 @@ from django.conf import settings
 from django.contrib.auth.decorators import login_required
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 
-from .views import NosotrosView,contactanosView, BlogView
+from .views import NosotrosView,BlogView
+from .viewsC import contactanosView
 from . import views
 
 urlpatterns = [
@@ -32,6 +33,8 @@ urlpatterns = [
     path('contactanos/',contactanosView,name="contactanos"),
 
     path('usuarios/', include('apps.usuarios.urls')),
+
+    path("usuarios/", include("django.contrib.auth.urls")),
 ]
 # LEER LAS URL DE LAS IMAGENES
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATICFILES_DIRS)

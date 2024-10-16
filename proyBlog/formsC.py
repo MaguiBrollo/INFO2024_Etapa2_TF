@@ -10,7 +10,7 @@ class ContactanosForm(forms.Form):
       super(ContactanosForm, self).__init__(*args, **kwargs)
 
       self.fields['nombre'].widget.attrs['class'] = 'form-control'
-      self.fields['nombre'].widget.attrs['placeholder'] = 'Su Nombre'
+      self.fields['nombre'].widget.attrs['placeholder'] = 'Nombre'
 
       self.fields['correo'].widget.attrs['class'] = 'form-control'
       self.fields['correo'].widget.attrs['placeholder'] = 'Correo electrónico'
