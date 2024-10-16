@@ -39,7 +39,8 @@ class Usuario(AbstractUser):
       return self.last_name +", "+ self.first_name
     
    def delete(self, using = None, keep_parents= False): #borrado en admin
-      self.foto.delete(self.foto.name)
+      if self.foto.name != '../static/img_default/usu_default.png':
+         self.foto.delete(self.foto.name)
       super().delete()
 
    def get_absolute_url(self):
