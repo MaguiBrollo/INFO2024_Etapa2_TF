@@ -1,3 +1,4 @@
+from smtplib import SMTPException
 from django.core.mail import EmailMessage
 from django.views.generic import TemplateView
 from django.shortcuts import redirect, render
@@ -23,7 +24,44 @@ class BlogView(TemplateView):
 from django.core.mail import send_mail
 from django.conf import settings
 
+from django.shortcuts import render
+from django.core.mail import send_mail
+from django.conf import settings
+from django.core.mail import BadHeaderError
+
+
 def contactanosView(request):
+   error = None  # Variable para el mensaje de error
+   if request.method == 'POST':
+      form = ContactanosForm(request.POST)
+      if form.is_valid():
+
+         nombre = form.cleaned_data['nombre']
+         correo = form.cleaned_data['correo']
+         asunto = form.cleaned_data['asunto']
+         mensaje = form.cleaned_data['mensaje']
+      
+         mensajeC =  "Usuario: {}\n Correo: {}\n \n Mensaje: {}\n\n".format(nombre,correo,mensaje)
+
+         remitente = settings.EMAIL_HOST_USER
+         destinatario = ['maguieb@hotmail.com']
+
+         try:
+               send_mail(asunto, mensajeC, remitente, destinatario)
+               return render(request, 'gracias.html')
+         except BadHeaderError:
+               error = "Encabezado inválido."
+         except SMTPException as e:
+               error = f"Error enviando el correo: {e}"
+         except Exception as e:
+               error = f"Ocurrió un error inesperado: {e}"
+   else:
+      form = ContactanosForm()
+
+   return render(request, 'contactanos.html', {'form': form, 'error': error})
+
+
+""" def contactanosView(request):
    if request.method == 'POST':
       formulario = ContactanosForm(request.POST)
       if formulario.is_valid():
@@ -35,7 +73,7 @@ def contactanosView(request):
          mensajeC =  "Usuario: {}\n Correo: {}\n \n Mensaje: {}\n\n".format(nombre,correo,mensaje)
 
          remitente = settings.EMAIL_HOST_USER
-         destinatarios = ['maguieb@hotmail.com']
+         destinatarios = ['xxxx@hotmail.com']
       
          try:
             send_mail(asunto, mensajeC, remitente, destinatarios)
@@ -49,4 +87,4 @@ def contactanosView(request):
    context = {
       'form': formulario,
    }
-   return render(request, 'contactanos.html', context)
+   return render(request, 'contactanos.html', context) """
