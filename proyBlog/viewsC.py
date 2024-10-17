@@ -22,13 +22,15 @@ def contactanosView(request):
          template = render_to_string('contactanosemail.html',{
               'nombre':nombre,
               'correo': correo,
+              'asunto': asunto,
               'mensaje': mensaje
          })
+         asuntomail = "Mensaje desde SIX BLOG"
          remitente = settings.EMAIL_HOST_USER
-         destinatario = ['xxx@gmail.com']
+         destinatario = ['xx@gmail.com']
 
          try:
-               email = EmailMessage(asunto, template, remitente, destinatario)
+               email = EmailMessage(asuntomail, template, remitente, destinatario)
                email.send(fail_silently=False)
                
                return render(request, 'contactanosgracias.html')
