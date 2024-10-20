@@ -15,7 +15,8 @@ class Categoria(models.Model):
 # POSTEOS --------------------------------------
 class Publicacion(models.Model):
    titulo_publicacion = models.CharField(max_length=50, null=False, verbose_name="Título", help_text="Título de la publicación.")
-   publicacion = models.TextField(max_length=250, null=False, verbose_name="Texto",help_text="Texto de la publicación.")
+   publicacion = models.TextField(null=False, verbose_name="Texto",help_text="Texto de la publicación.")
+   resumen = models.TextField(max_length=255, blank=True, null=True)
    imagen = models.ImageField(null=True, blank=True, 
                               default='img_default/public_default.jpg', 
                               upload_to='publicaciones', 

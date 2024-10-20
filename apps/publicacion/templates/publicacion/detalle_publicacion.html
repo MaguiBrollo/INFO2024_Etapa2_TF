@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+<!-- ==================================== -->
+{% load static %}
+
+<!-- ==================================== -->
+{% block title %} BLOG {% endblock title %}
+
+<!-- ==================================== -->
+
+{% block contenido %}
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-8 offset-md-2">
+            <h1 class="post-title">{{ publicacion.titulo_publicacion }}</h1>
+
+            <p class="post-meta">
+                Publicado el: {{ publicacion.fecha_publicacion|date:"d/m/Y" }} | 
+                Categoría: <span class="badge badge-info">{{ publicacion.categoria }}</span> | 
+                Autor: <strong>{{ publicacion.usuario }}</strong>
+            </p>
+            
+            {% if publicacion.imagen %}
+                <img src="{{ publicacion.imagen.url }}" alt="{{ publicacion.titulo_publicacion }}" class="post-image img-fluid">
+            {% endif %}
+            
+            <div class="post-content my-4">
+                <p>{{ publicacion.publicacion }}</p>
+            </div>
+
+            <div class="btn-group mb-4">
+                {% if request.user == publicacion.usuario or request.user.is_superuser or request.user.is_staff %}
+                    <a href="{% url 'editar_publicacion' publicacion.pk %}" class="btn" style="background-color: #6c757d; color: white; margin: 0 10px;">Editar</a>
+                    <a href="{% url 'eliminar_publicacion' publicacion.pk %}" class="btn" style="background-color: #6c757d; color: white; margin: 0 10px;">Eliminar</a>
+                {% endif %}
+                <a href="{% url 'lista_publicaciones' %}" class="btn btn-secondary" style="margin: 0 10px;">Volver a la lista</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock contenido %}
+
+
+
+
