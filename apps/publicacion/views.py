@@ -22,12 +22,11 @@ class CrearPublicacionView(UserPassesTestMixin, CreateView):
         form.instance.usuario = self.request.user
         return super().form_valid(form)
 
-    # Este método verifica si el usuario tiene permiso para crear una publicación
+
     def test_func(self):
-        # Cualquier usuario autenticado, superusuario o staff puede crear publicaciones
-        return self.request.user.is_authenticated and (
-            self.request.user.is_superuser or self.request.user.is_staff
-        )
+        # Permitir a usuarios regulares, staff y superusuarios crear categorías
+        return (self.request.user.is_authenticated and 
+                (self.request.user.is_superuser or self.request.user.is_staff or self.request.user.is_authenticated))
 
 
 # Clase para crear categorias
