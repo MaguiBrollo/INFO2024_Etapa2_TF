@@ -29,15 +29,13 @@
             Alfabético
         </a>
     </div>
-
     {% include 'publicacion/filtro_categorias.html' %}
-
     <div class="row">
         {% for publicacion in publicaciones %}
             <div class="col-md-6" style="margin-bottom: 20px;">
                 <div class="post-summa-publicacion" style="border: 1px solid #ddd; padding: 15px; border-radius: 5px;">
                     <h2>
-                        <a href="{% url 'detalle_publicacion' publicacion.pk %}" class="text-decoration-none text-dark" style="font-weight: bold;">
+                        <a href="{% url 'detalle_publicacion' pk=publicacion.pk %}" class="text-decoration-none text-dark" style="font-weight: bold;">
                             {{ publicacion.titulo_publicacion }}
                         </a>
                     </h2>
@@ -49,6 +47,8 @@
                         <p style="font-size: 0.9em;">Publicado el: {{ publicacion.fecha_publicacion }}</p>
                         <p style="font-size: 0.9em;">Categoría: {{ publicacion.categoria }}</p>
                     </div>
+                    <!-- Botón para agregar comentarios -->
+                    <a href="{% url 'detalle_publicacion' pk=publicacion.pk %}" class="btn btn-primary mt-2" style="background-color: #28a745; color: white; padding: 10px 20px; border-radius: 5px; text-transform: uppercase; text-decoration: none;">Comentar</a>
                 </div>
             </div>
         {% empty %}
@@ -57,7 +57,28 @@
             </div>
         {% endfor %}
     </div>
+    <!-- Sección de comentarios -->
+    <section class="layout_padding" id="comentarios">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="heading" style="padding-left: 15px; padding-right: 15px">
+                    <h4 style="border-bottom: solid #333 1px">Comentarios </h4>
+                </div>
+            </div>
+        </div>
+        <div class="list-group">
+            {% for comentario in publicacion.comentarios_publicacion.all %}
+                <div class="list-group-item">
+                    <p><strong>{{ comentario.autor }}</strong>: {{ comentario.texto }}</p>
+                </div>
+            {% endfor %}
+        </div>
+        <!-- Formulario para añadir un comentario -->
+        <h2>Añadir un comentario:</h2>
+        
+    </div>
+</section>
 </div>
 
 {% endblock contenido %}
-

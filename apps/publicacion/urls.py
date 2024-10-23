@@ -1,6 +1,6 @@
 from django.urls import path
 from .views import CrearPublicacionView, DetallePublicacionView,  EditarPublicacionView,  ListaPublicacionesView, BorrarPublicacionView
-from .views import EditarCategoriaView, EliminarCategoriaView, ListaCategoriasView, ListaPublicacionesPorCategoriaView, CrearCategoriaView
+from .views import EditarCategoriaView, EliminarCategoriaView, ListaCategoriasView, ListaPublicacionesPorCategoriaView, CrearCategoriaView, DetallePublicacionView
 
 urlpatterns = [
     path('crear/', CrearPublicacionView.as_view(), name='crear_publicacion'),
@@ -13,4 +13,4 @@ urlpatterns = [
     path('categorias/', ListaCategoriasView.as_view(), name='lista_categorias'),
     path('categoria/editar/<int:pk>/', EditarCategoriaView.as_view(), name='editar_categoria'),
     path('categoria/eliminar/<int:pk>/', EliminarCategoriaView.as_view(), name='eliminar_categoria'),
-]
+    ]

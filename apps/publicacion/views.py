@@ -1,6 +1,8 @@
 from pyexpat.errors import messages
 from django.http import HttpResponseRedirect
 from django.shortcuts import redirect, render, get_list_or_404
+from django.views.generic.list import ListView
+from apps.comentario.forms import ComentarioForm
 from .models import Publicacion, Categoria
 from django.views.generic import CreateView,ListView, DetailView, UpdateView, DeleteView
 from django.urls import reverse_lazy 
@@ -68,7 +70,7 @@ class ListaPublicacionesPorCategoriaView(ListView):
 
 class ListaPublicacionesView(ListView):
     model = Publicacion
-    template_name = 'lista_publicaciones.html'
+    template_name = 'publicacion/lista_publicaciones.html'
     context_object_name = 'publicaciones'
 
     def get_context_data(self, **kwargs):
@@ -100,6 +102,24 @@ class DetallePublicacionView(DetailView):
     model = Publicacion
     template_name = 'publicacion/detalle_publicacion.html'
     context_object_name = 'publicacion'
+
+    def post(self, request, *args, **kwargs):
+        object = self.get_object()
+        form = ComentarioForm(request.POST)
+        print(form)
+        if form.is_valid():
+            comentario = form.save(commit=False)
+            comentario.publicacion = object
+            comentario.autor = request.user
+            print(comentario)
+            comentario.save()
+            return redirect('detalle_publicacion', pk=object.pk)
+        return self.get_context_data(request, *args, **kwargs) 
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['form'] = ComentarioForm()
+        return context
 
 # Clase para Editar o modificar el post
 

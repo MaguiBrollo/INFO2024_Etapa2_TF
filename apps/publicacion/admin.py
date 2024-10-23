@@ -34,17 +34,9 @@ class PublicacionAdmin(admin.ModelAdmin) :
 admin.site.register(Publicacion,PublicacionAdmin)
 
 #-------------- COMENTARIOS
-class ComentarioAdmin(admin.ModelAdmin) :
-   list_display = ('id',
-                   'comentario', 
-                   'editado',
-                   'fecha_comentario', 
-                   'fecha_modificacion',
-                   'usuario',
-                   'publicacion')
-   
-   list_filter=('comentario','usuario')
-   search_fields=('comentario',)
+class ComentarioAdmin(admin.ModelAdmin):
+    list_display = ('publicacion', 'autor', 'texto')
+    list_filter = ('publicacion', 'autor')
    
 admin.site.register(Comentario,ComentarioAdmin)
 

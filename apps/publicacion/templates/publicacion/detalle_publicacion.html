@@ -34,11 +34,29 @@
                 {% endif %}
                 <a href="{% url 'lista_publicaciones' %}" class="btn btn-secondary" style="margin: 0 10px;">Volver a la lista</a>
             </div>
+            <!-- Comentarios existentes -->
+            <h2>Comentarios</h2>
+            <div class="list-group">
+                {% for comentario in publicacion.comentarios_comentario.all %}
+                    <div class="list-group-item">
+                        <p><strong>{{ comentario.autor }}</strong>: {{ comentario.texto }}</p>
+                        <p>Publicado el: {{ comentario.fecha_creacion }}</p>
+                    </div>
+                {% empty %}
+                    <div class="alert alert-info">No hay comentarios aún. ¡Sé el primero en comentar!</div>
+                {% endfor %}
+            </div>
+            
+            <hr>
+
+            <!-- Formulario para añadir un comentario -->
+            <h2>Añadir un comentario:</h2>
+            <form method="POST" action="{% url 'detalle_publicacion' publicacion.pk %}" class="form-group">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit" class="btn btn-primary mt-2" style="background-color: #28a745; color: white; padding: 10px 20px; border-radius: 5px; text-transform: uppercase; text-decoration: none;">Comentar</button>
+            </form>
         </div>
     </div>
 </div>
 {% endblock contenido %}
-
-
-
-
