@@ -35,8 +35,6 @@ urlpatterns = [
     path('usuarios/', include('apps.usuarios.urls')),
 
     path("usuarios/", include("django.contrib.auth.urls")),
-    path('publicacion/', include('apps.publicacion.urls')),
-    path('comentario/', include('apps.comentario.urls'))
 ]
 # LEER LAS URL DE LAS IMAGENES
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATICFILES_DIRS)
