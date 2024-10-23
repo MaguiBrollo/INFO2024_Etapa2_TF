@@ -48,13 +48,47 @@
 	</div>
 	<!-- end section -->
 
-	<!-- section -->
+	<!-- comentarios existentes -->
 	<section class="layout_padding">
 		<div class="container">
 			<div class="row">
 				<div class="col-md-12">
 					<div class="heading" style="padding-left: 15px; padding-right: 15px">
-						<h4 style="border-bottom: solid #333 1px">Commentarios / 2</h4>
+						<h4 style="border-bottom: solid #333 1px">Comentarios </h4>
+					</div>
+				</div>
+			</div>
+			<div class="list-group">
+				{% for comentario in publicacion.comentarios_publicacion.all %}
+					<div class="list-group-item">
+						<p><strong>{{ comentario.autor }}</strong>: {{ comentario.texto }}</p>
+					</div>
+				{% endfor %}
+			</div>
+			<!-- Formulario para añadir un comentario -->
+			<h2>Añadir un comentario:</h2>
+			{% load form_tags %}
+			<form method="POST" class="form-group">
+				{% csrf_token %}
+				<textarea name="texto" rows="5" cols="40" placeholder="Escribe tu comentario aquí...">
+					{{ form.texto.value }} </textarea>
+				<button type="submit" class="btn btn-primanry mt-2">Comentar</button>
+			</form>
+			
+		</div>
+	</section>
+	<!-- end section -->
+</div>
+{% endblock contenido %}
+
+
+	<!-- section
+	<section class="layout_padding">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+					<div class="heading" style="padding-left: 15px; padding-right: 15px">
+						<h4 style="border-bottom: solid #333 1px">Commentarios</h4>
 					</div>
 				</div>
 			</div>
@@ -153,4 +187,4 @@
 	</section>
 	<!-- end section -->
 </div>
-{% endblock contenido %}
+{% endblock contenido %} -->

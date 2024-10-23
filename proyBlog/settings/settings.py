@@ -40,6 +40,7 @@ INSTALLED_APPS = [
 
     'apps.publicacion', #nombre carpeta donde está la app
     'apps.usuarios', 
+    'apps.comentario'
 ]
 
 #     1ro. app_name='usuarios' luego el path 'login' PARA LOS login_required
