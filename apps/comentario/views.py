@@ -4,6 +4,7 @@ from .models import Publicacion, Comentario
 from .forms import ComentarioForm
 from django.utils import timezone
 
+
 # Create your views here.
 class DetallePublicacionView(DetailView):
     model = Publicacion

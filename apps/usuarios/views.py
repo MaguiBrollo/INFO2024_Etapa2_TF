@@ -84,3 +84,4 @@ class LogoutUsuarioView(LogoutView):
       messages.success(self.request, 'Logout exitoso.')
       return reverse('usuarios:logout')
    
+   

@@ -3,6 +3,7 @@ from django.conf import settings
 from apps.publicacion.models import Publicacion
 from django.utils import timezone
 
+
 def default_datatime():
     return timezone.now().isoformat()
 class Comentario(models.Model):
