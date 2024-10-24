@@ -1,4 +1,13 @@
-from django.shortcuts import render
+from pyexpat.errors import messages
+from django.http import HttpResponseRedirect
+from django.shortcuts import redirect, render, get_list_or_404
+
+from ProyectoFinal.proyBlog.apps.comentario.forms import ComentarioForm
+from .models import Publicacion, Categoria
+from django.views.generic import CreateView,ListView, DetailView, UpdateView, DeleteView
+from django.urls import reverse_lazy 
+from .forms import CategoriaForm, PublicacionForm
+from django.contrib.auth.mixins import UserPassesTestMixin
 
 # Create your views here.
 
