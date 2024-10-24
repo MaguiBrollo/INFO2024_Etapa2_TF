@@ -1,0 +1,9 @@
+<div class="btn-group mb-4">
+    <a href="{% url 'lista_publicaciones' %}" class="btn" style="background-color: #000f61; color: white; margin-right: 10px;">Todos</a>
+    {% for categoria in categorias %}
+        <a href="{% url 'lista_publicaciones_categoria' categoria.id %}" class="btn" style="background-color: #000f61; color: white; border: 1px solid #000f61; margin-right: 10px;">
+            {{ categoria.categoria }}
+        </a>
+    {% endfor %}
+</div>
+
