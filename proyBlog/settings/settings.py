@@ -24,6 +24,7 @@ SECRET_KEY = 'django-insecure-_kn&&wj-bl^iee3n2oa_9ln)(0lqc!flw8$t+7oyt^#_t0(o%=
 
 # SECURITY WARNING: don't run with debug turned on in production!
 #DEBUG = True  //se pasó a local.py y prod.py
+DEBUG = True   #False para deploy
 
 # ALLOWED_HOSTS = [] se paso a local.py y prod.py
 
@@ -40,6 +41,7 @@ INSTALLED_APPS = [
 
     'apps.publicacion', #nombre carpeta donde está la app
     'apps.usuarios', 
+    'apps.comentario',
 ]
 
 #     1ro. app_name='usuarios' luego el path 'login' PARA LOS login_required
@@ -127,6 +129,8 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 STATICFILES_DIRS = (os.path.join(os.path. dirname(BASE_DIR),'static'),)
+if not DEBUG:
+    STATIC_ROOT = os.path.join(os.path.dirname(BASE_DIR), 'staticfiles')
                                  
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field

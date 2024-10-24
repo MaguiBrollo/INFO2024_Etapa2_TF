@@ -85,3 +85,4 @@ class EditarUsuarioForm(forms.ModelForm):
 
       self.fields['foto'].widget.attrs['class'] = 'form-control'
       self.fields['foto'].widget.attrs['placeholder'] = 'Foto de Perfil'
+

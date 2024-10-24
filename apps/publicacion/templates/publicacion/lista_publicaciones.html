@@ -1,0 +1,84 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block title %}Lista de Publicaciones{% endblock title %}
+
+{% block contenido %}
+<div class="container publicaciones-container" style="padding: 20px;"> 
+    <h1 class="my-4 text-center publicaciones-titulo">Artículos</h1>
+        <div class="publicaciones-btn-group" style="text-align: center; margin-bottom: 20px;">
+            
+                <a href="{% url 'crear_publicacion' %}" class="btn btn-crear-publicacion" style="background-color: #28a745; color: white; padding: 10px 20px; border-radius: 5px; margin-right: 10px; text-transform: uppercase; text-decoration: none;">
+                    Crear Publicación
+                </a>
+                <a href="{% url 'lista_categorias' %}" class="btn btn-gestionar-categorias" style="background-color: #000f61; color: white; padding: 10px 20px; border-radius: 5px; margin-left: 10px; text-transform: uppercase; text-decoration: none;">
+                    Gestionar Categorías
+                </a>
+        </div>
+
+    <!-- Filtros de orden -->
+    <div class="filtros-btn-group" style="text-align: center; margin-bottom: 20px;">
+        <a href="?orden=recientes" class="btn" style="background-color: #6c757d; color: white; padding: 10px 20px; border-radius: 5px; margin-right: 10px; text-transform: uppercase; text-decoration: none;">
+            Más recientes
+        </a>
+        <a href="?orden=antiguas" class="btn" style="background-color: #6c757d; color: white; padding: 10px 20px; border-radius: 5px; margin-right: 10px; text-transform: uppercase; text-decoration: none;">
+            Más antiguas
+        </a>
+        <a href="?orden=alfabetico" class="btn" style="background-color: #6c757d; color: white; padding: 10px 20px; border-radius: 5px; margin-right: 10px; text-transform: uppercase; text-decoration: none;">
+            Alfabético
+        </a>
+    </div>
+    {% include 'publicacion/filtro_categorias.html' %}
+    <div class="row">
+        {% for publicacion in publicaciones %}
+            <div class="col-md-6" style="margin-bottom: 20px;">
+                <div class="post-summa-publicacion" style="border: 1px solid #ddd; padding: 15px; border-radius: 5px;">
+                    <h2>
+                        <a href="{% url 'detalle_publicacion' pk=publicacion.pk %}" class="text-decoration-none text-dark" style="font-weight: bold;">
+                            {{ publicacion.titulo_publicacion }}
+                        </a>
+                    </h2>
+                    <p>{{ publicacion.publicacion|slice:":100" }}...</p>
+                    {% if publicacion.imagen %}
+                        <img src="{{ publicacion.imagen.url }}" alt="{{ publicacion.titulo_publicacion }}" class="post-imagen" style="width: 100%; height: auto; border-radius: 5px;">
+                    {% endif %}
+                    <div class="post-meta-publicacion" style="margin-top: 10px;">
+                        <p style="font-size: 0.9em;">Publicado el: {{ publicacion.fecha_publicacion }}</p>
+                        <p style="font-size: 0.9em;">Categoría: {{ publicacion.categoria }}</p>
+                    </div>
+                    <!-- Botón para agregar comentarios -->
+                    <a href="{% url 'detalle_publicacion' pk=publicacion.pk %}" class="btn btn-primary mt-2" style="background-color: #28a745; color: white; padding: 10px 20px; border-radius: 5px; text-transform: uppercase; text-decoration: none;">Comentar</a>
+                </div>
+            </div>
+        {% empty %}
+            <div class="alert alert-info text-center" style="margin-top: 20px;">
+                No hay publicaciones disponibles.
+            </div>
+        {% endfor %}
+    </div>
+    <!-- Sección de comentarios -->
+    <section class="layout_padding" id="comentarios">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="heading" style="padding-left: 15px; padding-right: 15px">
+                    <h4 style="border-bottom: solid #333 1px">Comentarios </h4>
+                </div>
+            </div>
+        </div>
+        <div class="list-group">
+            {% for comentario in publicacion.comentarios_publicacion.all %}
+                <div class="list-group-item">
+                    <p><strong>{{ comentario.autor }}</strong>: {{ comentario.texto }}</p>
+                </div>
+            {% endfor %}
+        </div>
+        <!-- Formulario para añadir un comentario -->
+        <h2>Añadir un comentario:</h2>
+        
+    </div>
+</section>
+</div>
+
+{% endblock contenido %}
