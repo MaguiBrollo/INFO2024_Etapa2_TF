@@ -49,4 +49,5 @@ class Comentario(models.Model):
     fecha_creacion = models.DateTimeField(default=timezone.now)
 
 def __str__(self):
-   return self.comentario
+   return f'{self.autor} comento en {self.publicacion} lo siguiente: {self.texo}'
+   # return self.comentario

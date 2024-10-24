@@ -1,11 +1,10 @@
-from pyexpat.errors import messages
 from django.http import HttpResponseRedirect
 from django.shortcuts import redirect, render, get_list_or_404
 from django.views.generic.list import ListView
 from apps.comentario.forms import ComentarioForm
 from .models import Publicacion, Categoria
-from django.views.generic import CreateView,ListView, DetailView, UpdateView, DeleteView
-from django.urls import reverse_lazy 
+from django.views.generic import CreateView, ListView, DetailView, UpdateView, DeleteView
+from django.urls import reverse_lazy
 from .forms import CategoriaForm, PublicacionForm
 from django.contrib.auth.mixins import UserPassesTestMixin
 
@@ -98,7 +97,7 @@ class ListaPublicacionesView(ListView):
 
 # Clase para mostrar todo el contenido del post
 
-class DetallePublicacionView(DetailView):
+class DetallePublicacionView(DetailView, UserPassesTestMixin, UpdateView):
     model = Publicacion
     template_name = 'publicacion/detalle_publicacion.html'
     context_object_name = 'publicacion'
@@ -119,8 +118,11 @@ class DetallePublicacionView(DetailView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['form'] = ComentarioForm()
-        return context
+        return context 
 
+    def test_func(self):
+        publicacion = self.get_object()
+        return self.request.user == publicacion.usuario or self.request.user.is_superuser or self.request.user.is_staff
 # Clase para Editar o modificar el post
 
 class EditarPublicacionView(UserPassesTestMixin, UpdateView):

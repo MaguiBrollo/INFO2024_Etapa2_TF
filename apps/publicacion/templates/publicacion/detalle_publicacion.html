@@ -41,6 +41,9 @@
                     <div class="list-group-item">
                         <p><strong>{{ comentario.autor }}</strong>: {{ comentario.texto }}</p>
                         <p>Publicado el: {{ comentario.fecha_creacion }}</p>
+                        {% if comentario.autor == user %}
+                            <a href="{% url 'comentario:editar_comentario' pk=publicacion.pk %}" class="btn btn-secondary btn-sm">Editar</a>
+                        {% endif %}
                     </div>
                 {% empty %}
                     <div class="alert alert-info">No hay comentarios aún. ¡Sé el primero en comentar!</div>
