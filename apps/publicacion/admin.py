@@ -18,6 +18,7 @@ admin.site.register(Categoria, CategoriaAdmin)
 class PublicacionAdmin(admin.ModelAdmin) :
    list_display = ('id',
                    'titulo_publicacion', 
+                   'resumen',
                    'publicacion',
                    'imagen', 
                    'mostrar_imagen',

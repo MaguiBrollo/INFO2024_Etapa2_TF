@@ -19,7 +19,7 @@ class Publicacion(models.Model):
    publicacion = models.TextField(null=False, verbose_name="Texto",help_text="Texto de la publicación.")
    resumen = models.TextField(max_length=255, blank=True, null=True)
    imagen = models.ImageField(null=True, blank=True, 
-                              default='img_default/public_default.jpg', 
+                              default='../static/img_default/public_default.jpg', 
                               upload_to='publicaciones', 
                               verbose_name="Imagen")
    fecha_publicacion = models.DateTimeField(auto_now=True, verbose_name="Publicado")

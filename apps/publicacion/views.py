@@ -70,7 +70,7 @@ class ListaPublicacionesPorCategoriaView(ListView):
 
 class ListaPublicacionesView(ListView):
     model = Publicacion
-    template_name = 'publicacion/lista_publicaciones.html'
+    template_name = 'lista_publicaciones.html'
     context_object_name = 'publicaciones'
 
     def get_context_data(self, **kwargs):
