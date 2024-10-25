@@ -86,10 +86,7 @@
 										<li>
 											<a href="{% url 'contactanos' %}">Contáctanos</a>
 										</li>
-										<li>
-											<a href="#">Buscar</a>
-										</li>
-
+							
 										{% if user.is_authenticated %}
 										<li>
 											<a href="#">{{ user.username.upper }}</a>
