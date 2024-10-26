@@ -7,6 +7,7 @@ from django.views.generic import CreateView, ListView, DetailView, UpdateView, D
 from django.urls import reverse_lazy
 from .forms import CategoriaForm, PublicacionForm
 from django.contrib.auth.mixins import UserPassesTestMixin
+from django.utils import timezone
 
 # Create your views here.
 
@@ -97,7 +98,7 @@ class ListaPublicacionesView(ListView):
 
 # Clase para mostrar todo el contenido del post
 
-class DetallePublicacionView(DetailView, UserPassesTestMixin, UpdateView):
+class DetallePublicacionView(DetailView):
     model = Publicacion
     template_name = 'publicacion/detalle_publicacion.html'
     context_object_name = 'publicacion'
@@ -105,12 +106,14 @@ class DetallePublicacionView(DetailView, UserPassesTestMixin, UpdateView):
     def post(self, request, *args, **kwargs):
         object = self.get_object()
         form = ComentarioForm(request.POST)
-        print(form)
+        
         if form.is_valid():
             comentario = form.save(commit=False)
             comentario.publicacion = object
             comentario.autor = request.user
-            print(comentario)
+            comentario.fecha_creacion = timezone.now()
+            comentario.fecha_modificacion  = timezone.now()
+
             comentario.save()
             return redirect('detalle_publicacion', pk=object.pk)
         return self.get_context_data(request, *args, **kwargs) 
@@ -118,8 +121,8 @@ class DetallePublicacionView(DetailView, UserPassesTestMixin, UpdateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['form'] = ComentarioForm()
-        return context 
-
+        return context
+    
     def test_func(self):
         publicacion = self.get_object()
         return self.request.user == publicacion.usuario or self.request.user.is_superuser or self.request.user.is_staff

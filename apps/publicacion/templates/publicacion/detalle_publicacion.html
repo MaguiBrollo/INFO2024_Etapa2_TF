@@ -42,7 +42,7 @@
                         <p><strong>{{ comentario.autor }}</strong>: {{ comentario.texto }}</p>
                         <p>Publicado el: {{ comentario.fecha_creacion }}</p>
                         {% if comentario.autor == user %}
-                            <a href="{% url 'comentario:editar_comentario' pk=publicacion.pk %}" class="btn btn-secondary btn-sm">Editar</a>
+                            <a href="{% url 'comentario:editar_comentario' pk=comentario.pk %}" class="btn btn-secondary btn-sm">Editar</a>
                         {% endif %}
                     </div>
                 {% empty %}

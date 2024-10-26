@@ -32,7 +32,7 @@ class RegitrarUsuarioForm(UserCreationForm):
       self.fields['email'].widget.attrs['placeholder'] = 'Correo'
 
       self.fields['fecha_nacimiento'].widget.attrs['class'] = 'form-control'
-      self.fields['fecha_nacimiento'].widget.attrs['placeholder'] = 'Fecha de nacimiento'
+      self.fields['fecha_nacimiento'].widget.attrs['placeholder'] = 'Fecha de nacimiento (Ej. 01/10/1998)'
 
       self.fields['foto'].widget.attrs['class'] = 'form-control'
       self.fields['foto'].widget.attrs['placeholder'] = 'Foto de Perfil'
@@ -81,7 +81,7 @@ class EditarUsuarioForm(forms.ModelForm):
       self.fields['email'].widget.attrs['placeholder'] = 'Correo'
 
       self.fields['fecha_nacimiento'].widget.attrs['class'] = 'form-control'
-      self.fields['fecha_nacimiento'].widget.attrs['placeholder'] = 'Fecha de nacimiento'
+      self.fields['fecha_nacimiento'].widget.attrs['placeholder'] = 'Fecha de nacimiento (Ej. 01/10/1998)'
 
       self.fields['foto'].widget.attrs['class'] = 'form-control'
       self.fields['foto'].widget.attrs['placeholder'] = 'Foto de Perfil'
