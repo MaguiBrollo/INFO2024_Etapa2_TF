@@ -26,7 +26,7 @@ from .viewsC import contactanosView
 from . import views
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    path('adminsix/', admin.site.urls),
     path('',views.index,name="index"),
     path('nosotros/',NosotrosView.as_view(),name="nosotros"),
     path('blog/', BlogView.as_view(),name="blog"),
