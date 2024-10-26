@@ -19,7 +19,7 @@ class Publicacion(models.Model):
    publicacion = models.TextField(null=False, verbose_name="Texto",help_text="Texto de la publicación.")
    resumen = models.TextField(max_length=255, blank=True, null=True)
    imagen = models.ImageField(null=True, blank=True, 
-                              default='img_default/public_default.jpg', 
+                              default='../static/img_default/public_default.jpg', 
                               upload_to='publicaciones', 
                               verbose_name="Imagen")
    fecha_publicacion = models.DateTimeField(auto_now=True, verbose_name="Publicado")
@@ -42,12 +42,21 @@ class Publicacion(models.Model):
 
 
 # COMENTARIOS --------------------------------------
-class Comentario(models.Model):
-    publicacion = models.ForeignKey(Publicacion, related_name='comentarios_publicacion', on_delete=models.CASCADE)
-    autor = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='comentarios_autor_publicacion', on_delete=models.CASCADE)
-    texto = models.TextField()
-    fecha_creacion = models.DateTimeField(default=timezone.now)
+""" class Comentario(models.Model):
+   #antes
+   comentario = models.TextField(max_length=150, null=False, verbose_name="Comentario")
+   editado= models.BooleanField(default=False, verbose_name="Editado")
+   fecha_comentario = models.DateTimeField(auto_now=True, verbose_name="Comentado el")
+   fecha_modificacion = models.DateTimeField(default=timezone.now, verbose_name="Modificado")
+   usuario = models.ForeignKey(Usuario, on_delete=models.CASCADE, null = True, verbose_name="Usuario")
+   publicacion = models.ForeignKey(Publicacion, on_delete=models.CASCADE, null = True, verbose_name= "Publicación") 
 
-def __str__(self):
-   return f'{self.autor} comento en {self.publicacion} lo siguiente: {self.texo}'
-   # return self.comentario
+   #ahora
+   publicacion = models.ForeignKey(Publicacion, related_name='comentarios_publicacion', on_delete=models.CASCADE)
+   autor = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='comentarios_autor_publicacion', on_delete=models.CASCADE)
+   texto = models.TextField()
+   fecha_creacion = models.DateTimeField(default=timezone.now)
+
+   def __str__(self):
+      return f'{self.autor} comento en {self.publicacion} lo siguiente: {self.texo}' """
+      # return self.comentario

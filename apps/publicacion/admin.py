@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import Categoria, Publicacion, Comentario
+from .models import Categoria, Publicacion
 
 
 #-------------- PUBLICACION
@@ -33,12 +33,12 @@ class PublicacionAdmin(admin.ModelAdmin) :
 
 admin.site.register(Publicacion,PublicacionAdmin)
 
-#-------------- COMENTARIOS
-class ComentarioAdmin(admin.ModelAdmin):
-    list_display = ('publicacion', 'autor', 'texto')
-    list_filter = ('publicacion', 'autor')
+# #-------------- COMENTARIOS
+# class ComentarioAdmin(admin.ModelAdmin):
+#     list_display = ('publicacion', 'autor', 'texto')
+#     list_filter = ('publicacion', 'autor')
    
-admin.site.register(Comentario,ComentarioAdmin)
+# admin.site.register(Comentario,ComentarioAdmin)
 
 
 
