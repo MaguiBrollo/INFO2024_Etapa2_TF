@@ -21,7 +21,7 @@ from django.conf import settings
 from django.contrib.auth.decorators import login_required
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 
-from .views import NosotrosView,BlogView
+from .views import NosotrosView
 from .viewsC import contactanosView
 from . import views
 
@@ -29,7 +29,7 @@ urlpatterns = [
     path('adminsix/', admin.site.urls),
     path('',views.index,name="index"),
     path('nosotros/',NosotrosView.as_view(),name="nosotros"),
-    path('blog/', BlogView.as_view(),name="blog"),
+   
     path('contactanos/',contactanosView,name="contactanos"),
 
     path('usuarios/', include('apps.usuarios.urls')),
