@@ -26,9 +26,7 @@ class CrearPublicacionView(UserPassesTestMixin, CreateView):
 
 
     def test_func(self):
-        # Permitir a usuarios regulares, staff y superusuarios crear categorías
-        return (self.request.user.is_authenticated and 
-                (self.request.user.is_superuser or self.request.user.is_staff or self.request.user.is_authenticated))
+        return self.request.user.is_superuser or self.request.user.is_staff
 
 
 # Clase para crear categorias
@@ -43,9 +41,7 @@ class CrearCategoriaView(UserPassesTestMixin, CreateView):
         return redirect('lista_publicaciones')
 
     def test_func(self):
-        # Permitir a usuarios regulares, staff y superusuarios crear categorías
-        return (self.request.user.is_authenticated and 
-                (self.request.user.is_superuser or self.request.user.is_staff or self.request.user.is_authenticated))
+        return self.request.user.is_superuser or self.request.user.is_staff
 
 
 # Clase para listar las publicaiones segun su categoria
@@ -124,8 +120,7 @@ class DetallePublicacionView(DetailView):
         return context
     
     def test_func(self):
-        publicacion = self.get_object()
-        return self.request.user == publicacion.usuario or self.request.user.is_superuser or self.request.user.is_staff
+        return self.request.user.is_superuser or self.request.user.is_staff
 # Clase para Editar o modificar el post
 
 class EditarPublicacionView(UserPassesTestMixin, UpdateView):
@@ -135,8 +130,7 @@ class EditarPublicacionView(UserPassesTestMixin, UpdateView):
     success_url = reverse_lazy('lista_publicaciones')
     
     def test_func(self):
-        publicacion = self.get_object()
-        return self.request.user == publicacion.usuario or self.request.user.is_superuser or self.request.user.is_staff
+        return self.request.user.is_superuser or self.request.user.is_staff
 
 
 # Clase para borrar/eliminar el post
@@ -147,11 +141,7 @@ class BorrarPublicacionView(UserPassesTestMixin, DeleteView):
     success_url = reverse_lazy('lista_publicaciones')
 
     def test_func(self):
-        publicacion = self.get_object()  
-        # Permitir si el usuario es el autor del post, superuser o staff/colaborador
-        return (self.request.user == publicacion.usuario or 
-                self.request.user.is_superuser or 
-                self.request.user.is_staff)
+        return self.request.user.is_superuser or self.request.user.is_staff
 
 # Clase de lista de categoria
 
@@ -161,7 +151,7 @@ class ListaCategoriasView(UserPassesTestMixin, ListView):
     context_object_name = 'categorias'
 
     def test_func(self):
-        return self.request.user.is_superuser or self.request.user.is_staff or self.request.user.is_authenticated
+        return self.request.user.is_superuser or self.request.user.is_staff
 
 # Clase de editar categoria
 
