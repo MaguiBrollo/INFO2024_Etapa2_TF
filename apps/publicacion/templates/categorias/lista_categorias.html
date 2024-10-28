@@ -10,11 +10,9 @@
 <body>
     <div class="container">
         <h1 class="my-4 text-center">Gestionar Categorías</h1>
-        {% if request.user.is_authenticated %}
-            {% if request.user.is_superuser or request.user.is_staff or request.user.is_authenticated %}
+        {% if request.user.is_superuser or request.user.is_staff %}
                 <a href="{% url 'crear_categoria' %}" class="btn btn-success mb-4">Añadir Nueva Categoría</a>
                 <table class="table table-bordered">
-            {% endif %}
         {% endif %}
             <thead>
                 <tr>
