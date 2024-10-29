@@ -29,7 +29,7 @@
             </div>
 
             <div class="btn-group mb-4">
-                {% if request.user == publicacion.usuario or request.user.is_superuser or request.user.is_staff %}
+                {% if request.user.is_superuser or request.user.is_staff %}
                     <a href="{% url 'editar_publicacion' publicacion.pk %}" class="btn" style="background-color: #6c757d; color: white; margin: 0 10px;">Editar</a>
                     <a href="{% url 'eliminar_publicacion' publicacion.pk %}" class="btn" style="background-color: #6c757d; color: white; margin: 0 10px;">Eliminar</a>
                 {% endif %}
@@ -44,6 +44,7 @@
                         <p>Publicado el: {{ comentario.fecha_creacion }}</p>
                         {% if comentario.autor == user %}
                             <a href="{% url 'comentario:editar_comentario' pk=comentario.pk %}" class="btn btn-secondary btn-sm">Editar</a>
+                            <a href="{% url 'comentario:eliminar_comentario' pk=comentario.pk %}" class="btn btn-danger btn-sm">Eliminar</a>
                         {% endif %}
                     </div>
                 {% empty %}

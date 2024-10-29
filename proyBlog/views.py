@@ -11,6 +11,3 @@ class NosotrosView(TemplateView):
    template_name ='nosotros.html'
    success_url = reverse_lazy('index')
 
-class BlogView(TemplateView):
-   template_name ='blog.html'
-   success_url = reverse_lazy('index')
