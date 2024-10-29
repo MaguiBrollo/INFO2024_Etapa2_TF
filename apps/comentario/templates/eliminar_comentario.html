@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Eliminar Comentario{% endblock title %}
+
+{% block contenido %}
+<div class="container">
+    <h1>Eliminar comentario</h1>
+    <p>¿Esta seguro que desea elimiar este comentario?</p>
+    <form method="post"">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-danger">Eliminar</button>
+        <a href="{% url 'detalle_publicacion' object.publicacion.pk %}"></a>
+    </form>
+</div>
+{% endblock contenido %}

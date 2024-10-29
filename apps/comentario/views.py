@@ -1,7 +1,7 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.urls import reverse_lazy
 from django.views.generic.detail import DetailView
-from django.views.generic.edit import UpdateView
+from django.views.generic.edit import UpdateView, DeleteView
 from .models import Publicacion, Comentario
 from .forms import ComentarioForm
 from django.utils import timezone
@@ -43,15 +43,11 @@ class EditarComentarioView(UserPassesTestMixin, UpdateView):
         form.instance.fecha_modificacion = timezone.now()
         return super().form_valid(form)
 
-#  @login_required 
-#     def editar_comentario(request, pk):
-#         comentario = get_object_or_404(Comentario, pk=pk, autor=request.user)
-#         if request.mehtod == 'POST':
-#             form = ComentarioForm(request.POST, isinstance=comentario)
-#             if form.is_valid():
-#                 form.save()
-#                 return redirect('detalle_publicacion', pk=comentario.publicacion.pk)
-        
-#         else:
-#             form = ComentarioForm(isinstance=comentario)
-#         return render(request, 'comentario/editar_comentario.html', {'form': form})
+class EliminarComentarioView(UserPassesTestMixin, DeleteView):
+    model = Comentario
+    template_name = 'eliminar_comentario.html'
+    success_url = reverse_lazy('lista_publicaciones')
+
+    def test_func(self):
+        comentario = self.get_object()
+        return self.request.user == comentario.autor or self.request.user.is_superuser or self.request.user.is_staff
